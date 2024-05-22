@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Inventory - Inbound</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: #5cb85c; /* Light blue background color */
+        }
+        .center-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .btn-custom {
+            width: calc(30% - 5px); /* Set width for button */
+            margin-bottom: 20px;
+            margin-right: 5px; /* Add margin between buttons */
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #20c6ba;
+        }
+        .data-list {
+            max-height: 200px; /* Set maximum height for the data list */
+            overflow-y: auto; /* Add vertical scrollbar if needed */
+            font-size: 0.9rem; /* Adjust font size for data list */
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="center-box text-center">
+                <h2>Inbound</h2>
+                <div class="data-list">
+                    <div th:if="${message}" class="alert alert-success text-center">
+                        <p th:text="${message}"></p>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Reference</th>
+                            <th>Date Received</th>
+                            <th>Product SKU</th>
+                            <th>Quantity</th>
+                            <th>Destination</th>
+                            <th>Remarks</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="inbound : ${listInbound}">
+                            <td th:text="${inbound.id}">ID</td>
+                            <td th:text="${inbound.reference}">Reference</td>
+                            <td th:text="${inbound.dateReceived}">Date Ship</td>
+                            <td th:text="${inbound.productSku}">Product SKU</td>
+                            <td th:text="${inbound.quantity}">Quantity</td>
+                            <td th:text="${inbound.location}">Destination</td>
+                            <td th:text="${inbound.remarks}">Remarks</td>
+
+                            <td>
+                                <a class="btn btn-primary btn-sm" th:href="@{'/inbound/edit/' + ${inbound.id}}">Edit</a>
+                                <a class="btn btn-danger btn-sm" th:href="@{'/inbound/delete/' + ${inbound.id}}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="#" th:href="@{/inbound/new}" class="btn btn-custom">Add Inbound</a>
+                    <a href="#" th:href="@{/}" class="btn btn-custom">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

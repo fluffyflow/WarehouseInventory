@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Inventory</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: #5cb85c; /* Light blue background color */
+        }
+        .center-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .btn-custom {
+            width: 100%;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #20c6ba;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="center-box text-center">
+                <h2>Warehouse Inventory</h2>
+                <div class="text-center">
+                    <a href="#" th:href="@{/users}" class="btn btn-custom m-2">User Management</a>
+                </div>
+                <div class="text-center">
+                    <a href="#" th:href="@{/inbound}" class="btn btn-custom m-2">Inbound Management</a>
+                </div>
+                <div class="text-center">
+                    <a href="#" th:href="@{/outbound}" class="btn btn-custom m-2">Outbound Management</a>
+                </div>
+
+                <div class="text-center">
+                    <a href="#" th:href="@{/search}" class="btn btn-custom m-2">Search Inbound/Outbound</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

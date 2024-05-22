@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Inventory</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: #ffffff; /* Light blue background color */
+        }
+        .center-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .btn-custom {
+            width: 100%;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #20c6ba;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Search Results</h1>
+            <p>Results for "<strong th:text="${query}"></strong>":</p>
+
+            <h2>Inbound</h2>
+            <div th:if="${inbounds.isEmpty()}">No Inbound results found.</div>
+            <table class="table table-bordered" th:if="${not #lists.isEmpty(inbounds)}">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Reference</th>
+                    <th>Date Received</th>
+                    <th>Product SKU</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                    <th>Remark</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="inbound : ${inbounds}">
+                    <td th:text="${inbound.id}">ID</td>
+                    <td th:text="${inbound.reference}">Reference</td>
+                    <td th:text="${inbound.dateReceived}">Date Received</td>
+                    <td th:text="${inbound.productSku}">Product SKU</td>
+                    <td th:text="${inbound.quantity}">Quantity</td>
+                    <td th:text="${inbound.location}">Location</td>
+                    <td th:text="${inbound.remarks}">Remarks</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>Outbound</h2>
+            <div th:if="${outbounds.isEmpty()}">No Outbound results found.</div>
+            <table class="table table-bordered" th:if="${not #lists.isEmpty(outbounds)}">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Reference</th>
+                    <th>Date Shipped</th>
+                    <th>Product SKU</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                    <th>Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="outbound : ${outbounds}">
+                    <td th:text="${outbound.id}">ID</td>
+                    <td th:text="${outbound.reference}">Reference</td>
+                    <td th:text="${outbound.dateShip}">Date Shipped</td>
+                    <td th:text="${outbound.productSKU}">Product SKU</td>
+                    <td th:text="${outbound.quantity}">Quantity</td>
+                    <td th:text="${outbound.destination}">Destination</td>
+                    <td th:text="${outbound.destination}">Remarks</td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a href="#" th:href="@{/search}" class="btn btn-custom m-2">Back to Search</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
